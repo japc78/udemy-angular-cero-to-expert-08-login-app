@@ -36,13 +36,13 @@
                         <span class="focus-input100"></span>
                     </div>
 
-                    <span *ngIf="formRegister.submitted && formRegister.controls.password.errors" class="text-danger animated fadeIn">La contraseña debe de ser más de 4 letras</span>
+                    <span *ngIf="formRegister.submitted && formRegister.controls.password.errors" class="text-danger animated fadeIn">La contraseña debe de ser más de 6 letras</span>
                     <div class="wrap-input100 m-b-16" data-validate = "Password is required">
                         <input class="input100"
                                type="password"
                                name="password"
                                required
-                               minlength="4"
+                               minlength="6"
                                [(ngModel)]="user.password"
                                placeholder="Password">
                         <span class="focus-input100"></span>

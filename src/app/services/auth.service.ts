@@ -7,7 +7,7 @@ import { UserModel } from '../models/user.models';
 })
 export class AuthService {
   private url = 'https://identitytoolkit.googleapis.com/v1/accounts:';
-  private apikey = 'AIzaSyC69n4HlD2vVvBOtmSD-ad8-Ul6PUg7S04';
+  private API_KEY = 'AIzaSyC69n4HlD2vVvBOtmSD-ad8-Ul6PUg7S04';
 
   // Crear nuevos usuarios
   // https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=[API_KEY]
@@ -26,7 +26,15 @@ export class AuthService {
 
   }
 
-  newUser(user: UserModel): void {
+  newUser(user: UserModel) {
+    const authData = {
+      ...user,
+      returnSecureToken: true
+    };
+
+    return this.http.post(
+      `${this.url}signUp?key=${this.API_KEY}`,
+       authData );
 
   }
 
