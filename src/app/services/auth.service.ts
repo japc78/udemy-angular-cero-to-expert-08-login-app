@@ -22,7 +22,15 @@ export class AuthService {
 
   }
 
-  login(user: UserModel): void {
+  login(user: UserModel) {
+    const authData = {
+      ...user,
+      returnSecureToken: true
+    };
+
+    return this.http.post(
+      `${this.url}signInWithPassword?key=${this.API_KEY}`,
+       authData );
 
   }
 
