@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 import { UserModel } from '../../models/user.models';
 import { AuthService } from '../../services/auth.service';
-import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-registro',
@@ -13,7 +14,9 @@ export class RegistroComponent implements OnInit {
 
   user: UserModel;
 
-  constructor(private auth: AuthService) { }
+  constructor(
+    private auth: AuthService,
+    private router: Router) { }
 
   ngOnInit() {
     this.user = new UserModel();
@@ -36,6 +39,7 @@ export class RegistroComponent implements OnInit {
       .subscribe( resp => {
         console.log(resp);
         Swal.close();
+        this.router.navigateByUrl('/home');
       }, (err) => {
         console.log(err.error.error.message);
         Swal.fire({
