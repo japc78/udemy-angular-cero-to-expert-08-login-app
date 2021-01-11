@@ -13,6 +13,7 @@ import { AuthService } from '../../services/auth.service';
 export class RegistroComponent implements OnInit {
 
   user: UserModel;
+  rememberUser: false;
 
   constructor(
     private auth: AuthService,
@@ -39,6 +40,11 @@ export class RegistroComponent implements OnInit {
       .subscribe( resp => {
         console.log(resp);
         Swal.close();
+
+        if (this.rememberUser) {
+          localStorage.setItem('email', this.user.email);
+        }
+
         this.router.navigateByUrl('/home');
       }, (err) => {
         console.log(err.error.error.message);
